@@ -1,12 +1,13 @@
 
 const express = require('express');
 const cors = require('cors');
+const mime = require('mime');
 const Images = require('./image')
 
 const app = express();
 
 app.use(express.json())
-
+// app.use(express.static('src'))
 
 app.use(function(req, res, next) {
     res.setHeader("Content-Type", "application/json");
@@ -21,6 +22,11 @@ app.use(
     })
 )
 
+app.get('/', (req, res) => {
+    res.set('Content-Type', mime.getType('path/file'));
+    res.send('Hello World!')
+})
+
 
 app.get('/api', (req, res) => {
 
@@ -31,6 +37,7 @@ app.get('/api', (req, res) => {
     const endIndex = page * limit
     const results = Images.slice(startIndex, endIndex)
 
+    res.set('Content-Type', mime.getType('path/file'));
     res.send(results)
 })
 
