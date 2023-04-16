@@ -23,7 +23,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-    res.set('Content-Type', mime.getType('path/file'));
+    res.setHeader('Content-Type', 'application/javascript');
     res.send('Hello World!')
 })
 
@@ -37,7 +37,7 @@ app.get('/api', (req, res) => {
     const endIndex = page * limit
     const results = Images.slice(startIndex, endIndex)
 
-    res.set('Content-Type', mime.getType('path/file'));
+    res.setHeader('Content-Type', 'application/javascript');
     res.send(results)
 })
 
