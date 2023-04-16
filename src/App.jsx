@@ -10,6 +10,7 @@ const api = axios.create({
 
 const url = 'https://server-anime-snactuary.onrender.com/'
 //const url = 'https://anime-sanctuary.netlify.app/src/'
+//NEW
 
 function App() {
 
