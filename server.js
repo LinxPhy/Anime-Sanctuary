@@ -31,7 +31,7 @@ app.use(
 app.get('/api', (req, res) => {
 
     const page = parseInt(req.query.page) || 1
-    const limit = 100
+    const limit = 5
 
     const startIndex = (page - 1) * limit
     const endIndex = page * limit

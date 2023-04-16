@@ -8,6 +8,8 @@ const api = axios.create({
   // baseURL: 'http://localhost:3000/api',
 })
 
+const url = 'https://server-anime-snactuary.onrender.com/'
+
 function App() {
 
   const [images, setImages] = useState([])
@@ -74,9 +76,9 @@ function App() {
             <div className='image' onMouseOver={() => setShowGif(true)} onMouseOut={() => setShowGif(false)}>
 
               {showGif ? (
-                  <img src={images[currentImage].gif} />
+                  <img src={url + images[currentImage].gif} />
                 ) : (
-                  <img src={images[currentImage].link} />    
+                  <img src={url + images[currentImage].link} />    
                 )
               }
             </div>
