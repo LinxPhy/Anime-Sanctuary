@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import Logo from '../images/MyAnimeList_Logo.png'
+import Logo from './images/MyAnimeList_Logo.png'
 import axios from 'axios'
 import './App.css'
 
 const api = axios.create({
   baseURL: 'https://server-anime-snactuary.onrender.com/api',
+  // baseURL: 'http://localhost:3000/api',
 })
 
 function App() {

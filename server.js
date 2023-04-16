@@ -3,30 +3,30 @@ const express = require('express');
 const cors = require('cors');
 const mime = require('mime');
 const Images = require('./image')
+const path = require('path')
 
 const app = express();
 
 app.use(express.json())
-// app.use(express.static('src'))
 
-app.use(function(req, res, next) {
-    res.setHeader("Content-Type", "application/json");
-    next();
-});
+app.use(express.static(path.join(__dirname, 'src')))
 
 
 app.use(
     cors({
         origin: "https://anime-sanctuary.netlify.app",
+        // origin: "http://localhost:5173",
         methods: ["GET", "POST"]
     })
 )
 
-app.get('/', (req, res) => {
-    res.setHeader('Content-Type', 'application/javascript');
-    res.send('Hello World!')
-})
-
+// app.use(express.static('public', {
+//     setHeaders: (res, path) => {
+//       if (mime.getType(path) === 'application/javascript') {
+//         res.type('application/javascript');
+//       }
+//     }
+//   }));
 
 app.get('/api', (req, res) => {
 
