@@ -4,7 +4,7 @@ import axios from 'axios'
 import './App.css'
 
 const api = axios.create({
-  baseURL: 'https://anime-sanctuary.netlify.app/api',
+  baseURL: 'https://server-anime-snactuary.onrender.com/api',
 })
 
 function App() {
