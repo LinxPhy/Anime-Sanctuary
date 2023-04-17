@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'src')))
 
 app.use(
     cors({
+        // origin: 'anime-sanctuary.infinityfreeapp.com',
         origin: "https://anime-sanctuary.netlify.app",
         // origin: "http://localhost:5173",
         methods: ["GET", "POST"]
