@@ -8,9 +8,10 @@ const api = axios.create({
   // baseURL: 'http://localhost:3000/api',
 })
 
-const url = 'https://server-anime-snactuary.onrender.com/'
-//const url = 'https://anime-sanctuary.netlify.app/src/'
-//NEW
+const image_link = 'https://firebasestorage.googleapis.com/v0/b/anime-sanctuary-bb873.appspot.com/o/images%2F'
+const gif_link = 'https://firebasestorage.googleapis.com/v0/b/anime-sanctuary-bb873.appspot.com/o/gifs%2F'
+
+const extension = '?alt=media'
 
 function App() {
 
@@ -78,9 +79,9 @@ function App() {
             <div className='image' onMouseOver={() => setShowGif(true)} onMouseOut={() => setShowGif(false)}>
 
               {showGif ? (
-                  <img src={url + images[currentImage].gif} />
+                  <img src={ gif_link + images[currentImage].gif + extension} loading='lazy' />
                 ) : (
-                  <img src={url + images[currentImage].link} />    
+                  <img src={ image_link + images[currentImage].link + extension} loading='lazy'/>    
                 )
               }
             </div>

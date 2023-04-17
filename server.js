@@ -4,11 +4,21 @@ const cors = require('cors');
 const mime = require('mime');
 const Images = require('./image')
 const path = require('path')
-
+const admin = require('firebase-admin');
+const { initializeApp } = require("firebase/app");
+const { getStorage } = require("firebase/storage");
+const serviceAccount = require("./serviceAccount.json");
 const app = express();
 
-app.use(express.json())
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: "anime-sanctuary-bb873.appspot.com"
+});
 
+// const firebaseApp = initializeApp(firebaseConfig);
+// const storage = getStorage(firebaseApp);
+
+app.use(express.json())
 app.use(express.static(path.join(__dirname, 'src')))
 
 
@@ -20,15 +30,8 @@ app.use(
     })
 )
 
-// app.use(express.static('public', {
-//     setHeaders: (res, path) => {
-//       if (mime.getType(path) === 'application/javascript') {
-//         res.type('application/javascript');
-//       }
-//     }
-//   }));
 
-app.get('/api', (req, res) => {
+app.get('/api', async(req, res) => {
 
     const page = parseInt(req.query.page) || 1
     const limit = 5
@@ -39,6 +42,18 @@ app.get('/api', (req, res) => {
 
     res.setHeader('Content-Type', 'application/javascript');
     res.send(results)
+
+    // const bucket = admin.storage().bucket();
+    // const [files] = await bucket.getFiles();
+
+    // const images = files.map(file => {
+    //     return {
+    //         id: file.id,
+    //         url: `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(file.name)}?alt=media`
+    //     }
+    // })
+
+    // res.send(Images)
 })
 
 app.listen(3000, () => {
